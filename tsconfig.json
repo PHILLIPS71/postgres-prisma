@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "outDir": "dist",
+    "strict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["esnext", "dom"],
+    "removeComments": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@generated/*": ["./generated/*"],
+      "@app": ["./src/main.ts"],
+      "@api/*": ["./src/api/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

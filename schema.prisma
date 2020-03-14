@@ -1,0 +1,26 @@
+datasource pg {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator prisma {
+    provider = "prisma-client-js"
+    output   = "generated/prisma"
+}
+
+generator typegraphql {
+  provider = "node_modules/typegraphql-prisma/generator.js"
+  output   = "generated/type-graphql"
+}
+
+model User {
+    id       String  @default(cuid()) @id
+    email    String  @unique
+    username String  @unique
+    password String
+    avatar   String?
+}

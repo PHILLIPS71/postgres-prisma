@@ -1,0 +1,6 @@
+.env
+.idea
+config
+dist
+generated
+node_modules

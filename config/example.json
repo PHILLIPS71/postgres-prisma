@@ -1,0 +1,20 @@
+{
+  "node_env": "",
+  "ip": "",
+  "port": 9000,
+  "origin": "",
+  "session": {
+    "secret": ""
+  },
+  "postgres": {
+    "url": ""
+  },
+  "aws": {
+    "s3": {
+      "region": "",
+      "bucket": "",
+      "access_key": "",
+      "access_secret": ""
+    }
+  }
+}

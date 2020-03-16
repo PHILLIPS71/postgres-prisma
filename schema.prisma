@@ -13,8 +13,8 @@ generator prisma {
 }
 
 generator typegraphql {
-  provider = "node_modules/typegraphql-prisma/generator.js"
-  output   = "generated/type-graphql"
+    provider = "node_modules/typegraphql-prisma/generator.js"
+    output   = "generated/type-graphql"
 }
 
 model User {

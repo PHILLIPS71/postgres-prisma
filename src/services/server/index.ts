@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client'
-import Koa from 'koa'
 import { ApolloServer } from 'apollo-server-koa'
 import config from 'config'
+import Koa from 'koa'
+import { PrismaClient } from '@prisma/client'
 import schema from '../../api/index'
 
 export default class Server {

@@ -1,6 +1,6 @@
 import { Query, Resolver } from 'type-graphql'
-import { User } from '../../../../generated/type-graphql'
 import app from '../../../main'
+import { User } from '../../../../generated/type-graphql'
 
 @Resolver(() => User)
 export default class UserQuery {

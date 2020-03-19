@@ -17,18 +17,13 @@
   "rules": {
     "prettier/prettier": "error",
     "quotes": [2, "single"],
-    "sort-imports": [
-      "error",
-      {
-        "ignoreCase": true,
-        "ignoreDeclarationSort": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["all", "multiple", "single", "none"]
-      }
-    ],
     "import/no-cycle": 0,
     "import/extensions": 0,
     "no-console": ["error", { "allow": ["warn", "error", "info"] }],
-    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "camelcase": 0,
+    "class-methods-use-this": 0,
+    "no-param-reassign": ["error", { "props": false }],
+    "no-unused-vars": "off"
   }
 }

@@ -1,6 +1,6 @@
+import 'reflect-metadata'
 import config from 'config'
 import Server from './services/server/index'
-import 'reflect-metadata'
 
 export class Application {
   private readonly ip: string

@@ -16,6 +16,13 @@ datasource pg {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Session {
+  id      String @default(cuid()) @id
+  sid     String @unique
+  user    String
+  max_age Int
+  expire  Int
 }
 
 model User {

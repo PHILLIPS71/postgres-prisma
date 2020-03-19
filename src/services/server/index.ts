@@ -1,8 +1,11 @@
 import { ApolloServer } from 'apollo-server-koa'
 import config from 'config'
-import Koa from 'koa'
+import cors from '@koa/cors'
+import Koa, { Context } from 'koa'
 import { PrismaClient } from '@prisma/client'
+import session from 'koa-session'
 import schema from '../../api/index'
+import SessionStore from '../session/SessionStore'
 
 export default class Server {
   private readonly koa: Koa
@@ -13,6 +16,26 @@ export default class Server {
 
     this.prisma = new PrismaClient()
     this.prisma.connect()
+
+    this.koa.keys = [config.get('session.secret')]
+    this.koa.use(
+      cors({
+        origin: config.get('origin'),
+        credentials: true
+      })
+    )
+
+    this.koa.use(
+      session(
+        {
+          store: new SessionStore(),
+          key: 'SID',
+          maxAge: 86400000,
+          renew: true
+        },
+        this.koa
+      )
+    )
   }
 
   public async start(ip: string, port: number) {

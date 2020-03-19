@@ -11,16 +11,20 @@
   "author": "Jordan Phillips",
   "license": "ISC",
   "dependencies": {
+    "@koa/cors": "^3.0.0",
     "@prisma/client": "^2.0.0-preview024",
     "apollo-server-koa": "^2.11.0",
+    "bcrypt": "^4.0.1",
     "config": "^3.3.0",
     "dataloader": "^2.0.0",
     "graphql": "^14.6.0",
     "koa": "^2.11.0",
+    "koa-session": "^5.13.1",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^0.17.6"
   },
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/config": "0.0.36",
     "@types/koa-session": "^5.10.2",
     "@typescript-eslint/eslint-plugin": "^2.24.0",

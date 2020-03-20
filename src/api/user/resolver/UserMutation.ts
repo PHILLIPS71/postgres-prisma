@@ -3,8 +3,9 @@ import { Context } from 'koa'
 import bcrypt from 'bcrypt'
 import NotFoundError from '../../../services/apollo/error/NotFoundError'
 import app from '../../../main'
-import isSelf from '../../../services/response'
+import response from '../../../services/response'
 import { User, UpdateOneUserArgs, CreateOneUserArgs } from '../../../../generated/type-graphql'
+import { AuthenticationError } from 'apollo-server-koa'
 
 @Resolver(of => User)
 export default class UserMutation {
@@ -31,13 +32,24 @@ export default class UserMutation {
       })
     }
 
-    return isSelf(context)
-      .then(user =>
+    return app
+      .getServer()
+      .getPrisma()
+      .user.findOne({
+        where: input.where
+      })
+      .then(response.notFound(context))
+      .then(response.isSelf(context))
+      .then(user => {
+        if (!user) {
+          throw new AuthenticationError('cannot update other users')
+        }
+
         app
           .getServer()
           .getPrisma()
           .user.update(input)
-      )
-      .catch(error => new NotFoundError('user not found'))
+      })
+      .catch(error => error)
   }
 }

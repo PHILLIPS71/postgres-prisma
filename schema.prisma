@@ -17,6 +17,10 @@ datasource pg {
   url      = env("DATABASE_URL")
 }
 
+enum Gender {
+  MALE FEMALE UNSPECIFIED
+}
+
 model Session {
   id      String @default(cuid()) @id
   sid     String @unique
@@ -31,6 +35,16 @@ model User {
   username   String   @unique
   password   String
   avatar     String?
+  contact    Contact  @relation(references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Contact {
+  id         String   @default(cuid()) @id
+  first_name String
+  last_name  String
+  gender     Gender
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }

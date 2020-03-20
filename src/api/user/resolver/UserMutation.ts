@@ -1,11 +1,10 @@
 import { Ctx, Resolver, Mutation, Args, Authorized } from 'type-graphql'
 import { Context } from 'koa'
 import bcrypt from 'bcrypt'
-import NotFoundError from '../../../services/apollo/error/NotFoundError'
+import { AuthenticationError } from 'apollo-server-koa'
 import app from '../../../main'
 import response from '../../../services/response'
 import { User, UpdateOneUserArgs, CreateOneUserArgs } from '../../../../generated/type-graphql'
-import { AuthenticationError } from 'apollo-server-koa'
 
 @Resolver(of => User)
 export default class UserMutation {
@@ -45,7 +44,7 @@ export default class UserMutation {
           throw new AuthenticationError('cannot update other users')
         }
 
-        app
+        return app
           .getServer()
           .getPrisma()
           .user.update(input)

@@ -4,6 +4,7 @@ import cors from '@koa/cors'
 import Koa, { Context } from 'koa'
 import { PrismaClient } from '@prisma/client'
 import session from 'koa-session'
+import _ from 'lodash'
 import schema from '../../api/index'
 import SessionStore from '../session/SessionStore'
 
@@ -42,7 +43,7 @@ export default class Server {
     const apollo = new ApolloServer({
       schema: await schema(),
       playground: true,
-      context: ({ ctx }) => ctx
+      context: ({ ctx }) => _.merge(ctx, { prisma: this.prisma })
     })
 
     this.koa.use(apollo.getMiddleware())

@@ -3,9 +3,9 @@ import { User } from '../../../generated/type-graphql'
 import app from '../../main'
 import NotFoundError from '../apollo/error/NotFoundError'
 
-const isSelf = (context: Context) => (entity: User | null): Promise<User> | null => {
+const isSelf = (context: Context) => async (entity: User | null): Promise<User | null> => {
   if (entity) {
-    return app
+    const user = await app
       .getServer()
       .getPrisma()
       .user.findOne({
@@ -14,9 +14,16 @@ const isSelf = (context: Context) => (entity: User | null): Promise<User> | null
         }
       })
       .catch(error => error)
+
+    if (entity.id === user.id) {
+      return entity
+    }
+
+    return null
   }
 
-  return null
+  context.response.status = 404
+  throw new NotFoundError('404 not found')
 }
 
 const notFound = (context: Context) => (entity: User | null) => {

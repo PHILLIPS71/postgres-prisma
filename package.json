@@ -14,7 +14,7 @@
     "@koa/cors": "^3.0.0",
     "@prisma/client": "^2.0.0-preview024",
     "apollo-server-koa": "^2.11.0",
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "config": "^3.3.0",
     "graphql": "^14.6.0",
     "koa": "^2.11.0",
